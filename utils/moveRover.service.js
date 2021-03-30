@@ -9,6 +9,8 @@ const {
   moveRoverMapper,
 } = require("../definitions");
 
+const { isRoverOutOfBoundaries } = require("./plateauValidations.service");
+
 const convertIndexDirectionToRealDirection = (updatedIndex) => {
   if (updatedIndex === -1) return WEST;
   if (updatedIndex === numberOfDirections) return NORTH;
@@ -31,22 +33,38 @@ const updatePosition = (currentPosition, displacementVector) => {
   return { x: previousX + incrX, y: previousY + incrY };
 };
 
-const service = {
-  updateDirectionPosition: ({ currentPosition, currentDirection }) => (
-    action
-  ) => {
-    if (action === FORWARD) {
-      const displacementVector = moveRoverMapper[currentDirection];
+const updateDirectionPosition = ({ currentPosition, currentDirection }) => (
+  action
+) => {
+  if (action === FORWARD) {
+    const displacementVector = moveRoverMapper[currentDirection];
 
-      const updatedPosition = updatePosition(
-        currentPosition,
-        displacementVector
-      );
-      return { currentPosition: updatedPosition, currentDirection };
-    }
-    const updatedDirection = updateDirection(currentDirection, action);
-    return { currentPosition, currentDirection: updatedDirection };
-  },
+    const updatedPosition = updatePosition(currentPosition, displacementVector);
+    return { currentPosition: updatedPosition, currentDirection };
+  }
+  const updatedDirection = updateDirection(currentDirection, action);
+  return { currentPosition, currentDirection: updatedDirection };
 };
 
-module.exports = { ...service };
+const service = {
+  calculateFinalRoverPosition: (
+    { actions = [], ...roverProps },
+    plateauDimensions
+  ) =>
+    actions.reduce(
+      (roverState, currentAction) => {
+        const updatedRoverPosition = updateDirectionPosition(roverState)(
+          currentAction
+        );
+        if (isRoverOutOfBoundaries(updatedRoverPosition)(plateauDimensions)) {
+          throw new Error(outOfBoundaries);
+        }
+        return { ...updatedRoverPosition };
+      },
+      {
+        ...roverProps,
+      }
+    ),
+};
+
+module.exports = { ...service, updateDirectionPosition };

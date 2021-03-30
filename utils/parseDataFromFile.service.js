@@ -4,21 +4,18 @@ const pipeline = (...args) => (startingValue) =>
     startingValue
   );
 
-const removeSpaces = (value) => `${value}`.replace(/\s+/g, "");
+const removeSpaces = (value) => `${value}`.replace(/\s+/g, " ");
 const split = (value) => `${value}`.split("");
+const splitSpace = (value) => `${value}`.split(" ");
 const castToInteger = (ArrOfValues = []) =>
   ArrOfValues.map((value) => (Number.isNaN(+value) ? value : +value));
 
 const getPlateauDimension = (line) => {
-  const [xLength, yLength] = pipeline(removeSpaces, split, castToInteger)(line);
+  const [xLength, yLength] = pipeline(splitSpace, castToInteger)(line);
   return { xLength, yLength };
 };
 const getStartingPosition = (line) => {
-  const [x, y, currentDirection] = pipeline(
-    removeSpaces,
-    split,
-    castToInteger
-  )(line);
+  const [x, y, currentDirection] = pipeline(splitSpace, castToInteger)(line);
   return { currentPosition: { x, y }, currentDirection };
 };
 const getSequenceOfActions = (line) => {
@@ -26,21 +23,26 @@ const getSequenceOfActions = (line) => {
   return { actions };
 };
 
-const getStartingPositionLines = (arrOfLines = []) =>
+const getStartingPositionIndexes = (arrOfLines) =>
   arrOfLines.map((value, index) => index).filter((index) => index % 2 === 0);
-
-const getStartingPositionAndActions = (positionIndex, listOfLines) => {
+const getPositionDirectionAndActions = (positionIndex, arrOfLines) => {
   const { currentPosition, currentDirection } = getStartingPosition(
-    listOfLines[positionIndex]
+    arrOfLines[positionIndex]
   );
-  const { actions } = getSequenceOfActions(listOfLines[positionIndex + 1]);
+  const { actions } = getSequenceOfActions(arrOfLines[positionIndex + 1]);
   return { currentPosition, currentDirection, actions };
+};
+
+const buildListOfRoverObjects = (arrOfLines = []) => {
+  const indexesForPositions = getStartingPositionIndexes(arrOfLines);
+  return indexesForPositions.map((index) =>
+    getPositionDirectionAndActions(index, arrOfLines)
+  );
 };
 
 module.exports = {
   getPlateauDimension,
   getStartingPosition,
   getSequenceOfActions,
-  getStartingPositionLines,
-  getStartingPositionAndActions,
+  buildListOfRoverObjects,
 };

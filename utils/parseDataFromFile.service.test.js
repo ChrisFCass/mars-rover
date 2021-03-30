@@ -6,7 +6,7 @@ const {
 
 describe("assess getter functions depending on each line", () => {
   it("should get dimensions from plateau", () => {
-    const line = "    7   5";
+    const line = "7 5";
 
     const { xLength, yLength } = getPlateauDimension(line);
 
@@ -15,7 +15,7 @@ describe("assess getter functions depending on each line", () => {
   });
 
   it("should get starting position of rover", () => {
-    const line = "    1   3 N";
+    const line = "1 3 N";
 
     const { currentPosition, currentDirection } = getStartingPosition(line);
 
@@ -24,7 +24,7 @@ describe("assess getter functions depending on each line", () => {
   });
 
   it("should get actions for the rover to perform", () => {
-    const line = " MRLMRLM  MM  SS";
+    const line = "MRLMRLMMMSS";
 
     const { actions } = getSequenceOfActions(line);
 
