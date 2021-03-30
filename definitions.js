@@ -19,7 +19,7 @@ const moveRoverMapper = {
   W: { x: -1, y: 0 },
 };
 
-const outOfBoundaries = 'the rover has a position X or Y out of the plateau';
+const outOfBoundaries = 'the rover has a position X or Y outside the plateau';
 const invalidPlateauDimensions = "wide or height's plateau are invalid values";
 
 const fileNotFound =

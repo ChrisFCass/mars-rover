@@ -1,7 +1,7 @@
 const { isRoverOutOfBoundaries } = require('./plateauValidations.service');
 
 describe('assess different validations regarding the plateau', () => {
-  it('should be out of boundaries for x-dim', () => {
+  it('should be outside of boundaries for x-dim', () => {
     const plateauDimension = { xLength: 4, yLength: 7 };
     const rover = { currentPosition: { x: 5, y: 7 } };
 
@@ -9,7 +9,7 @@ describe('assess different validations regarding the plateau', () => {
     expect(isOutOfBoundaries).toBe(true);
   });
 
-  it('should be out of boundaries for y-dim', () => {
+  it('should be outside of boundaries for y-dim', () => {
     const plateauDimension = { xLength: 5, yLength: 7 };
     const rover = { currentPosition: { x: 5, y: 8 } };
 
