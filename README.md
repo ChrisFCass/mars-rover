@@ -14,6 +14,7 @@
     MMRMMRMRRM # second rover will perform those actions (forward, forward, right)
     ```
 
+  - install dependencies with: `npm install`
   - then execute `npm start`
 
 - Assumptions of this code:
@@ -24,5 +25,5 @@
     - Currently it is not important to check boundary conditions on the rear (this condition was chosen).
     - Currently it is not important to check boundary contidions at all.
   - it was assummed the content of the file was always correct, even though this is rarely true.
-    this could be implemented on a next release (e.g.: lower case instructions, missing starting positions or actions).
+    this could be implemented on a next release (e.g.: lower-case instructions, missing starting positions or actions).
   - at the moment, it was also assummed rovers will not superpose their position at any time to simplify this problem.
