@@ -3,8 +3,8 @@
 - In order to run this simulation please follow the next steps:
 
   - change the name of file `.env.temporary` to `.env`
-  - assign the environment variable `INSTRUCTION_FILE_PATH` the relative path to where your configuration file is located
-    it currently defaults to a test example:
+  - assign the environment variable `INSTRUCTION_FILE_PATH` (inside .env file) the relative path to where your configuration file is located.
+    It currently defaults to a test example:
 
     ```txt
     5 5        # plateau will be a 5 x 5 grid
@@ -16,7 +16,7 @@
 
   - install dependencies with: `npm install`
   - then execute `npm start` to start the simulation
-  - after running the simulation, it will output in the console the final location of each rover, like in the next example:
+  - after running the simulation, it will output to the console the final location of each rover, like in the next example:
 
     ```txt
     1 3 N     # first rover will be positioned facing north at (1,3)
