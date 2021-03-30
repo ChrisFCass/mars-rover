@@ -1,7 +1,4 @@
-const isRoverOutOfBoundaries = ({ currentPosition }) => ({
-  xLength,
-  yLength,
-}) => {
+const isRoverOutOfBoundaries = ({ currentPosition }) => ({ xLength, yLength }) => {
   const { x: currentXPosition, y: currentYPosition } = currentPosition;
 
   if (currentXPosition > xLength) return true;

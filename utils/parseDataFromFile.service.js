@@ -1,12 +1,9 @@
 const pipeline = (...args) => (startingValue) =>
-  [...args].reduce(
-    (accumulator, currentFuntion) => currentFuntion(accumulator),
-    startingValue
-  );
+  [...args].reduce((accumulator, currentFuntion) => currentFuntion(accumulator), startingValue);
 
-const removeSpaces = (value) => `${value}`.replace(/\s+/g, " ");
-const split = (value) => `${value}`.split("");
-const splitSpace = (value) => `${value}`.split(" ");
+const removeSpaces = (value) => `${value}`.replace(/\s+/g, ' ');
+const split = (value) => `${value}`.split('');
+const splitSpace = (value) => `${value}`.split(' ');
 const castToInteger = (ArrOfValues = []) =>
   ArrOfValues.map((value) => (Number.isNaN(+value) ? value : +value));
 
@@ -26,18 +23,14 @@ const getSequenceOfActions = (line) => {
 const getStartingPositionIndexes = (arrOfLines) =>
   arrOfLines.map((value, index) => index).filter((index) => index % 2 === 0);
 const getPositionDirectionAndActions = (positionIndex, arrOfLines) => {
-  const { currentPosition, currentDirection } = getStartingPosition(
-    arrOfLines[positionIndex]
-  );
+  const { currentPosition, currentDirection } = getStartingPosition(arrOfLines[positionIndex]);
   const { actions } = getSequenceOfActions(arrOfLines[positionIndex + 1]);
   return { currentPosition, currentDirection, actions };
 };
 
 const buildListOfRoverObjects = (arrOfLines = []) => {
   const indexesForPositions = getStartingPositionIndexes(arrOfLines);
-  return indexesForPositions.map((index) =>
-    getPositionDirectionAndActions(index, arrOfLines)
-  );
+  return indexesForPositions.map((index) => getPositionDirectionAndActions(index, arrOfLines));
 };
 
 module.exports = {

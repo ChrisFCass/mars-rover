@@ -7,9 +7,9 @@ const {
   originPosition,
   turnToLeftOrRightIndexMapper,
   moveRoverMapper,
-} = require("../definitions");
+} = require('../definitions');
 
-const { isRoverOutOfBoundaries } = require("./plateauValidations.service");
+const { isRoverOutOfBoundaries } = require('./plateauValidations.service');
 
 const convertIndexDirectionToRealDirection = (updatedIndex) => {
   if (updatedIndex === -1) return WEST;
@@ -33,9 +33,7 @@ const updatePosition = (currentPosition, displacementVector) => {
   return { x: previousX + incrX, y: previousY + incrY };
 };
 
-const updateDirectionPosition = ({ currentPosition, currentDirection }) => (
-  action
-) => {
+const updateDirectionPosition = ({ currentPosition, currentDirection }) => (action) => {
   if (action === FORWARD) {
     const displacementVector = moveRoverMapper[currentDirection];
 
@@ -47,15 +45,10 @@ const updateDirectionPosition = ({ currentPosition, currentDirection }) => (
 };
 
 const service = {
-  calculateFinalRoverPosition: (
-    { actions = [], ...roverProps },
-    plateauDimensions
-  ) =>
+  calculateFinalRoverPosition: ({ actions = [], ...roverProps }, plateauDimensions) =>
     actions.reduce(
       (roverState, currentAction) => {
-        const updatedRoverPosition = updateDirectionPosition(roverState)(
-          currentAction
-        );
+        const updatedRoverPosition = updateDirectionPosition(roverState)(currentAction);
         if (isRoverOutOfBoundaries(updatedRoverPosition)(plateauDimensions)) {
           throw new Error(outOfBoundaries);
         }

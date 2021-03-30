@@ -1,18 +1,16 @@
-const fs = require("fs");
-const split = require("split");
+const fs = require('fs');
+const split = require('split');
 
 const { INSTRUCTION_FILE_PATH: path } = process.env;
-const { outOfBoundaries } = require("./definitions");
+const { outOfBoundaries } = require('./definitions');
 
-const { readInstructionFile } = require("./utils/readInstructionFile.service");
+const { readInstructionFile } = require('./utils/readInstructionFile.service');
 const {
   getPlateauDimension,
   buildListOfRoverObjects,
-} = require("./utils/parseDataFromFile.service");
-const {
-  isRoverOutOfBoundaries,
-} = require("./utils/plateauValidations.service");
-const { calculateFinalRoverPosition } = require("./utils/moveRover.service");
+} = require('./utils/parseDataFromFile.service');
+const { isRoverOutOfBoundaries } = require('./utils/plateauValidations.service');
+const { calculateFinalRoverPosition } = require('./utils/moveRover.service');
 
 const responseAdapter = ({ currentPosition: { x, y }, currentDirection }) =>
   `${x} ${y} ${currentDirection}`;

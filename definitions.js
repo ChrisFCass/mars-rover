@@ -1,8 +1,8 @@
-const NORTH = "N";
-const EAST = "E";
-const SOUTH = "S";
-const WEST = "W";
-const FORWARD = "M";
+const NORTH = 'N';
+const EAST = 'E';
+const SOUTH = 'S';
+const WEST = 'W';
+const FORWARD = 'M';
 
 const directionsOrder = [NORTH, EAST, SOUTH, WEST];
 const numberOfDirections = directionsOrder.length;
@@ -19,11 +19,11 @@ const moveRoverMapper = {
   W: { x: -1, y: 0 },
 };
 
-const outOfBoundaries = "the rover has a position X or Y out of the plateau";
+const outOfBoundaries = 'the rover has a position X or Y out of the plateau';
 const invalidPlateauDimensions = "wide or height's plateau are invalid values";
 
 const fileNotFound =
-  "Instructions file path not resolved, please make sure you added properly to .env file";
+  'Instructions file path not resolved, please make sure you added properly to .env file';
 
 module.exports = {
   FORWARD,
