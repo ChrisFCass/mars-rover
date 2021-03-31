@@ -23,6 +23,16 @@
     5 1 E     # second rover will be positioned facing east at (5,1)
     ```
 
+- structure of this project:
+
+  - simulation process is implemented in index.js
+  - all utilities to perform read instruction file; parse data from file; update of rover position and validate it are implemented in /utils
+
+- in order to run test we can use:
+
+  - `npm run test` to run all tests
+  - `npm run test:cov` to run all tests and see the coverage
+
 - Assumptions of this code:
   - Despite the rover being a rectangular box, the second rover, in the upper example at some point has
     its rear part beyond the limits.
